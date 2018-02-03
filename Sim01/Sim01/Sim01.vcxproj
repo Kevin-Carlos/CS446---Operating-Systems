@@ -69,6 +69,15 @@
       <RemoteCopyToOutputDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</RemoteCopyToOutputDir>
     </Text>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="config_1.conf" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ConfigData.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ConfigData.cpp" />
+  </ItemGroup>
   <ItemDefinitionGroup />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
