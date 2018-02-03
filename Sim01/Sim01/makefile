@@ -8,7 +8,7 @@ CC=g++
 CXXFLAGS = -g -Wall -std=c++11
 
 # Source files
-SOURCES = 
+SOURCES = ConfigData.cpp main.cpp
 
 # header file dependencies
 HEADERS = ConfigData.h

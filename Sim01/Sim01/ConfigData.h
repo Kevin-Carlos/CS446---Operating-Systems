@@ -12,6 +12,7 @@
 */
 
 #include <string>
+#include <queue>
 
 class ConfigData 
 {
@@ -26,4 +27,8 @@ public:
                   projectorTime;
    char           outputPath;
    std::string    logFile;
+   
+   std::queue<std::string> configQueue;
+
+   void fileReadIn ( std::string );
 };
