@@ -71,6 +71,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="config_1.conf" />
+    <None Include="Test_1a.mdf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConfigData.h" />
