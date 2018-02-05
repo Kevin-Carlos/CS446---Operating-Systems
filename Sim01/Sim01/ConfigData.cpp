@@ -66,3 +66,53 @@ void ConfigData::fileReadIn ( std::string configFileName )
    //Close the file
    fin.close ( );
 }
+
+bool ConfigData::setVariables ( )
+{
+   metaFile = configQueue.front ( );
+   configQueue.pop ( );
+
+   monitorTime = stoi ( configQueue.front ( ) );
+   configQueue.pop ( );
+
+   processorTime = stoi ( configQueue.front ( ) );
+   configQueue.pop ( );
+
+   scannerTime = stoi ( configQueue.front ( ) );
+   configQueue.pop ( );
+
+   HDDTime = stoi ( configQueue.front ( ) );
+   configQueue.pop ( );
+
+   keyboardTime = stoi ( configQueue.front ( ) );
+   configQueue.pop ( );
+
+   memoryTime = stoi ( configQueue.front ( ) );
+   configQueue.pop ( );
+
+   projectorTime = stoi ( configQueue.front ( ) );
+   configQueue.pop ( );
+   
+   //Handle where to log here with a helper function
+   setLogPath ( );
+
+   logFile = configQueue.front ( );
+   configQueue.pop ( );
+   configQueue.pop ( ); //To get rid of the added variable put into queue
+                        //earlier
+
+   return 1;
+}
+
+bool ConfigData::setLogPath ( )
+{
+   //Variable declarations
+   std::string temp;
+   const std::string LOGBOTH = "Both";
+
+   temp = configQueue.front ( );
+   if ( temp.find ( LOGBOTH ) )
+      outputPath = 'B';
+
+   return 1;
+}

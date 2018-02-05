@@ -17,13 +17,12 @@
 
 int main ( int argc , char *argv [ ] )
 {
-   std::cout << "You have entered " << argc << " arguments:" << "\n";
+   //Read in Config file
+   ConfigData obj;
+   obj.fileReadIn ( argv [ 1 ] );
 
-   for ( int i = 0; i < argc; ++i )
-      std::cout << argv [ i ] << "\n";
-
-   ConfigData Obj;
-   Obj.fileReadIn ( argv [ 1 ] );
+   //Set Config data variables
+   obj.setVariables ( );
 
    return 0;
 }

@@ -31,4 +31,7 @@ public:
    std::queue<std::string> configQueue;
 
    void fileReadIn ( std::string );
+   bool setVariables ( );
+   bool setLogPath ( );
+
 };
