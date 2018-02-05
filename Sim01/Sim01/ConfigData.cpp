@@ -34,22 +34,34 @@ void ConfigData::fileReadIn ( std::string configFileName )
    std::ifstream  fin;
    std::string    temp ,
                   data ,
-                  temp2;
+                  temp2; 
 
    //Check that the file opened
    fin.open ( configFileName );
 
    if ( !fin )
       exit ( 1 ); 
+
+   //std::cout << "File opened...\n";
  
    //Otherwise read in the values and store in string queue
    while ( !fin.eof ( ) )
    {
-      std::getline ( fin , temp , ':' ) &&
-         std::getline ( fin , data , '\n' );
-      std::cout << data << "";
+      std::getline ( fin , temp , ':' );
+      std::getline ( fin , temp2 , ' ' );
+
+      //All necessary info in data
+      std::getline ( fin , data , '\n' ); 
+      
+      //Debugging
+      //std::cout << "Temp: " << temp << "\n";
+      //std::cout << "Data: " << data << "\n";
+
+      //Store into queue
+      configQueue.push ( data );
+
+      //std::cout << "Size: " << configQueue.size ( ) << "\n";
    }
-   
 
    //Close the file
    fin.close ( );
