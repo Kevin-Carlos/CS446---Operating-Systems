@@ -13,25 +13,29 @@
 
 #include <string>
 #include <queue>
+#include <map>
+
+#ifndef _CONFIGDATACLASS__
+#define _CONFIGDATACLASS__
 
 class ConfigData 
 {
 public:
-   std::string    metaFile;
-   int            monitorTime ,
-                  processorTime ,
-                  scannerTime ,
-                  HDDTime ,
-                  keyboardTime ,
-                  memoryTime ,
-                  projectorTime;
+   //Variables
+   std::string    metaFile, logFile;
    char           outputPath;
-   std::string    logFile;
-   
-   std::queue<std::string> configQueue;
 
+   //Data structures
+   std::queue<std::string> configQueue;
+   std::map<std::string , std::string> configMap;
+
+   //Member methods
    void fileReadIn ( std::string );
+   void getSetFilePath ( );
+
+
    bool setVariables ( );
    bool setLogPath ( );
 
 };
+#endif

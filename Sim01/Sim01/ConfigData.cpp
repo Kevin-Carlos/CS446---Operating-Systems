@@ -34,31 +34,58 @@ void ConfigData::fileReadIn ( std::string configFileName )
    std::ifstream  fin;
    std::string    temp ,
                   data ,
-                  temp2; 
+                  key,
+      temp2; 
 
    //Check that the file opened
    fin.open ( configFileName );
 
+   //If it doesn't open, exit program; wrong file
    if ( !fin )
       exit ( 1 ); 
 
    //std::cout << "File opened...\n";
  
-   //Otherwise read in the values and store in string queue
+   //Otherwise read in the values and store in string queued
    while ( !fin.eof ( ) )
    {
-      std::getline ( fin , temp , ':' );
-      std::getline ( fin , temp2 , ' ' );
+      //Queue version
+      //std::getline ( fin , temp , ':' );
+      //std::getline ( fin , temp2 , ' ' );
 
+      //Map version
+
+      //Need to handle the first key value which should be
+      //File Path
+      getSetFilePath ( );
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      /////////////////////////////////////////////////////////
       //All necessary info in data
-      std::getline ( fin , data , '\n' ); 
+      //std::getline ( fin , data , '\n' ); 
       
       //Debugging
-      //std::cout << "Temp: " << temp << "\n";
-      //std::cout << "Data: " << data << "\n";
+      std::cout << "Temp: " << temp << "\n";
+      std::cout << "Data: " << data << "\n";
 
       //Store into queue
-      configQueue.push ( data );
+      //configQueue.push ( data );
 
       //std::cout << "Size: " << configQueue.size ( ) << "\n";
    }
@@ -66,6 +93,24 @@ void ConfigData::fileReadIn ( std::string configFileName )
    //Close the file
    fin.close ( );
 }
+
+void ConfigData::getSetFilePath ( )
+{
+   //Variable Declarations
+   std::string    data , 
+                  temp;
+   std::ifstream  fin;
+
+   //First two lines are unnecessary in this case
+   std::getline ( fin , temp , ':' );
+   std::getline ( fin , temp , ' ' );
+
+   std::getline ( fin , data , '\n' );
+
+   metaFile = data;
+}
+
+
 
 bool ConfigData::setVariables ( )
 {

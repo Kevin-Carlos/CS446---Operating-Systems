@@ -14,15 +14,22 @@
 #include <iostream>
 
 #include "ConfigData.h"
+#include "metaData.h"
 
 int main ( int argc , char *argv [ ] )
 {
+   //Class Object declarations
+   ConfigData configObj;
+   metaData metaObj;
+
    //Read in Config file
-   ConfigData obj;
-   obj.fileReadIn ( argv [ 1 ] );
+   configObj.fileReadIn ( argv [ 1 ] );
 
    //Set Config data variables
-   obj.setVariables ( );
+   configObj.setVariables ( );
+
+   //Need to open metaData file now
+   metaObj.metaFileReadIn ( configObj.metaFile );
 
    return 0;
 }
