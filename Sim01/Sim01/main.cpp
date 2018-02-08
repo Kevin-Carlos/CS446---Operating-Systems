@@ -22,10 +22,8 @@ int main ( int argc , char *argv [ ] )
    ConfigData configObj;
    metaData metaObj;
 
-   //Read in Config file
+   //Read in Config file and set data
    configObj.fileReadIn ( argv [ 1 ] );
-
-   //Set Config data variables
 
    //Need to open metaData file now
    metaObj.metaFileReadIn ( configObj.metaFile );

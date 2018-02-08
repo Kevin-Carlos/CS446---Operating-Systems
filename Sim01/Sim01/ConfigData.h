@@ -21,15 +21,13 @@ class ConfigData
 {
 public:
    //Variables
-   std::string    metaFile , logFile;
-   char           outputPath;
 
    //Data structures
    std::map<std::string , std::string> configMap;
+   std::map<std::string , std::string>::iterator it;
 
    //Member methods
    void fileReadIn ( std::string );
-   bool setLogPath ( );
-
+   
 };
 #endif

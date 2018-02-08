@@ -16,6 +16,7 @@
 //
 #include <fstream>
 #include <iostream>
+#include <algorithm>
 
 #include "ConfigData.h"
 
@@ -67,30 +68,36 @@ void ConfigData::fileReadIn ( std::string configFileName )
 
       //Take the first word to be the actual key
       keyVal = keyString.substr ( 0 , keyString.find ( ' ' ));
+      //Set to lowercase
+      std::transform ( 
+         keyVal.begin ( ) , 
+         keyVal.end ( ) , 
+         keyVal.begin ( ) , 
+         ::tolower );
+
+      //Special case for log file path
+      it = configMap.find ( "log" );
+      if ( it == configMap.end() ) 
+      {
+         //Not found
+      }
+      else
+      {
+         keyVal = "path";
+      }
 
       
       //Insert into map
-     // configMap.insert ( keyVal , data );
+      configMap.insert ( std::pair<std::string, std::string> ( keyVal, data ) );
 
       //Debugging
       std::cout << "Key: " << keyVal << "\n";
       std::cout << "Data: " << data << "\n";
    }
 
+   temp = ( "End" );
+   configMap.erase ( temp );
+
    //Close the file
    fin.close ( );
-}
-
-
-bool ConfigData::setLogPath ( )
-{
-   //Variable declarations
-   std::string temp;
-   const std::string LOGBOTH = "Both";
-
-   //temp = configQueue.front ( );
-   if ( temp.find ( LOGBOTH ) )
-      outputPath = 'B';
-
-   return 1;
 }
