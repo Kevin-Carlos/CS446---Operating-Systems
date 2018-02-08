@@ -125,6 +125,7 @@ void ConfigData::log ( )
       //Find where the file path is
       it = configMap.find ( "path" );
       logPath = it->second;
+      logPath = logPath.substr ( 0 , logPath.find ( '\r' ) );
 
       //Open the file
       fout.open ( logPath );
@@ -160,6 +161,7 @@ void ConfigData::log ( )
       //Find where the file path is
       it = configMap.find ( "path" );
       logPath = it->second;
+      logPath = logPath.substr ( 0 , logPath.find ( '\r' ) );
 
       //Open the file
       fout.open ( logPath );
