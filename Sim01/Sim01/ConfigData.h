@@ -13,6 +13,8 @@
 
 #include <string>
 #include <map>
+#include <iostream>
+#include <fstream>
 
 #ifndef _CONFIGDATACLASS__
 #define _CONFIGDATACLASS__
@@ -21,6 +23,7 @@ class ConfigData
 {
 public:
    //Variables
+   std::string metaFile;
 
    //Data structures
    std::map<std::string , std::string> configMap;
@@ -28,6 +31,7 @@ public:
 
    //Member methods
    void fileReadIn ( std::string );
+   void log ( );
    
 };
 #endif

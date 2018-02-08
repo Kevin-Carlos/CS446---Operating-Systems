@@ -14,8 +14,6 @@
 //
 // Include Directives
 //
-#include <fstream>
-#include <iostream>
 #include <algorithm>
 
 #include "ConfigData.h"
@@ -91,13 +89,89 @@ void ConfigData::fileReadIn ( std::string configFileName )
       configMap.insert ( std::pair<std::string, std::string> ( keyVal, data ) );
 
       //Debugging
-      std::cout << "Key: " << keyVal << "\n";
-      std::cout << "Data: " << data << "\n";
+      //std::cout << "Key: " << keyVal << "\n";
+      //std::cout << "Data: " << data << "\n";
    }
 
    temp = ( "End" );
    configMap.erase ( temp );
 
+   //Set the meta file
+   it = configMap.find ( "file" ); //Meta file path
+   temp = it->second;
+   //Get rid of the \r
+   metaFile = temp.substr ( 0 , temp.find ( '\r' ) );
+
    //Close the file
    fin.close ( );
+}
+
+void ConfigData::log ( )
+{
+   //Variable declarations
+   std::ofstream  fout;
+   std::string    logOutput;
+   std::string    logPath;
+
+   //Access map to find where to log
+   it = configMap.find ( "log" );
+   logOutput = it->second;
+   logOutput = logOutput.substr ( 0 , logOutput.find ( '\r' ) );
+
+   std::cout << "logOutput: " << logOutput << "\n";
+
+   if ( logOutput == "Log to Both" )
+   {
+      //Find where the file path is
+      it = configMap.find ( "path" );
+      logPath = it->second;
+
+      //Open the file
+      fout.open ( logPath );
+
+      std::cout << "Configuration File Data\n";
+      fout << "Configuration File Data\n";
+
+      //Run through the data
+      for ( it = configMap.begin ( ); it != configMap.end ( ); ++it )
+      {
+         std::cout << it->first << ": " << it->second << '\n';
+      }
+      for ( it = configMap.begin ( ); it != configMap.end ( ); ++it )
+      {
+         fout << it->first << ": " << it->second << '\n';
+      }
+      fout.close ( );
+   }
+   
+   if ( logOutput == "Monitor" )
+   {
+      std::cout << "Configuration File Data\n";
+
+      //Run through the data
+      for ( it = configMap.begin ( ); it != configMap.end ( ); ++it )
+      {
+         std::cout << it->first << ": " << it->second << '\n';
+      }
+   }
+
+   if ( logOutput == "File" )
+   {
+      //Find where the file path is
+      it = configMap.find ( "path" );
+      logPath = it->second;
+
+      //Open the file
+      fout.open ( logPath );
+
+      fout << "Configuration File Data\n";
+
+      //Run through the data
+      for ( it = configMap.begin ( ); it != configMap.end ( ); ++it )
+      {
+         fout << it->first << ": " << it->second << '\n';
+      }
+      fout.close ( );
+   }
+
 }
