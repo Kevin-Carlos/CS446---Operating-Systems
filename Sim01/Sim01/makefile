@@ -11,7 +11,7 @@ CXXFLAGS = -g -Wall -std=c++11
 SOURCES = ConfigData.cpp main.cpp metaData.cpp
 
 # header file dependencies
-HEADERS = ConfigData.h
+HEADERS = ConfigData.h metaData.h
 
 # Object files
 OBJECTS = $(SOURCES:.cpp=.o)
